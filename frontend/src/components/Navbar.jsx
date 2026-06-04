@@ -1,16 +1,17 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { HiMenu, HiX } from 'react-icons/hi';
-import { fadeDown } from '../animations/variants';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { HiMenu, HiX } from "react-icons/hi";
+import { fadeDown } from "../animations/variants";
+import logo from "../assets/srivelenLogo.png";
 
 const navLinks = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
-  { label: 'Equipment', href: '#equipment' },
-  { label: 'Workflow', href: '#workflow' },
-  { label: 'Testimonials', href: '#testimonials' },
-  { label: 'Contact', href: '#contact' },
+  { label: "Home", href: "#home" },
+  { label: "About", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Equipment", href: "#equipment" },
+  { label: "Workflow", href: "#workflow" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -19,8 +20,8 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -30,18 +31,24 @@ export default function Navbar() {
       variants={fadeDown}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-primary/95 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/5'
-          : 'bg-transparent'
+          ? "bg-primary/95 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/5"
+          : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <a href="#home" className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-gold to-accent-red flex items-center justify-center font-bold text-primary text-lg">
-              SV
+              <img
+                src={logo}
+                alt="Logo"
+                className="h-full rounded-lg w-full object-cover"
+              />
             </div>
             <div className="hidden sm:block">
-              <span className="font-display font-bold text-lg text-white">SRI VELAN</span>
+              <span className="font-display font-bold text-lg text-white">
+                SRI VELAN
+              </span>
               <span className="block text-[10px] text-accent-gold tracking-widest uppercase">
                 DGPS Surveying
               </span>
@@ -79,7 +86,7 @@ export default function Navbar() {
         {mobileOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="lg:hidden bg-primary/98 backdrop-blur-xl border-t border-white/5"
