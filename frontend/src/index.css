@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0a1628;
+  --color-primary-light: #1a2d4a;
+  --color-secondary: #1e3a5f;
+  --color-accent-gold: #d4a843;
+  --color-accent-gold-light: #e8c468;
+  --color-accent-red: #c41e3a;
+  --color-accent-red-light: #e03050;
+  --color-surface: #0d1b2e;
+  --color-surface-light: #162a45;
+  --color-glass: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-primary);
+    color: white;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent-gold);
+    color: var(--color-primary);
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-primary);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-gold);
+  }
+}
+
+@layer components {
+  .glass {
+    background: var(--color-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--color-glass-border);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, var(--color-accent-gold), var(--color-accent-gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-red {
+    background: linear-gradient(135deg, var(--color-accent-red), var(--color-accent-red-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(212, 168, 67, 0.3),
+                0 0 60px rgba(212, 168, 67, 0.1);
+  }
+
+  .glow-red {
+    box-shadow: 0 0 20px rgba(196, 30, 58, 0.3),
+                0 0 60px rgba(196, 30, 58, 0.1);
+  }
+
+  .section-padding {
+    padding: 5rem 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 8rem 4rem;
+  }
+}
