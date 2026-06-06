@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import axios from 'axios';
-import { fadeUp, staggerContainer, scaleIn } from '../animations/variants';
-import { useScrollReveal } from '../hooks/useScrollReveal';
-import SectionTitle from '../components/SectionTitle';
-import { FaPaperPlane, FaCheckCircle } from 'react-icons/fa';
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import axios from "axios";
+import { fadeUp, staggerContainer, scaleIn } from "../animations/variants";
+import { useScrollReveal } from "../hooks/useScrollReveal";
+import SectionTitle from "../components/SectionTitle";
+import { FaPaperPlane, FaCheckCircle } from "react-icons/fa";
 
-const initialForm = { name: '', email: '', contact: '', phone: '' };
+const initialForm = { name: "", email: "", contact: "", phone: "" };
 
 export default function EnquiryForm() {
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [ref, inView] = useScrollReveal();
 
   const handleChange = (e) => {
@@ -22,25 +22,30 @@ export default function EnquiryForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
-      await axios.post('/api/enquiry', form);
+      const response = await axios.post("/api/enquiry", form);
       setSuccess(true);
       setForm(initialForm);
-      setTimeout(() => setSuccess(false), 5000);
+
+      console.log(response);
     } catch (err) {
-      setError(err.response?.data?.error || 'Something went wrong. Please try again.');
-    } finally {
-      setLoading(false);
+      console.log(err?.response?.data);
+      setError(
+        err.response?.data?.error || "Something went wrong. Please try again.",
+      );
     }
   };
 
   const inputClasses =
-    'w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-accent-gold/50 focus:bg-white/8 focus:shadow-[0_0_20px_rgba(212,168,67,0.15)] transition-all duration-300';
+    "w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3.5 text-white placeholder-white/30 text-sm focus:outline-none focus:border-accent-gold/50 focus:bg-white/8 focus:shadow-[0_0_20px_rgba(212,168,67,0.15)] transition-all duration-300";
 
   return (
-    <section id="enquiry" className="section-padding relative overflow-hidden bg-surface/50">
+    <section
+      id="enquiry"
+      className="section-padding relative overflow-hidden bg-surface/50"
+    >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent-gold/5 rounded-full blur-[180px]" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent-red/5 rounded-full blur-[120px]" />
 
@@ -54,7 +59,7 @@ export default function EnquiryForm() {
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
+          animate={inView ? "visible" : "hidden"}
           variants={fadeUp}
           className="glass-strong rounded-3xl p-6 sm:p-10 relative overflow-hidden"
         >
@@ -81,7 +86,9 @@ export default function EnquiryForm() {
                 >
                   <FaCheckCircle className="text-green-400 mb-4" size={56} />
                 </motion.div>
-                <h3 className="text-2xl font-bold text-white mb-2">Enquiry Submitted!</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Enquiry Submitted!
+                </h3>
                 <p className="text-white/60 text-sm">
                   Thank you for reaching out. We will contact you shortly.
                 </p>
@@ -173,16 +180,32 @@ export default function EnquiryForm() {
                     disabled={loading}
                     whileHover={{
                       scale: 1.03,
-                      boxShadow: '0 0 30px rgba(212,168,67,0.3)',
+                      boxShadow: "0 0 30px rgba(212,168,67,0.3)",
                     }}
                     whileTap={{ scale: 0.97 }}
                     className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-accent-gold to-accent-gold-light text-primary font-semibold rounded-xl text-sm sm:text-base disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-300"
                   >
                     {loading ? (
                       <>
-                        <svg className="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        <svg
+                          className="animate-spin h-5 w-5 text-primary"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          />
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          />
                         </svg>
                         Sending...
                       </>
