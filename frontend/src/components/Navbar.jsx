@@ -29,7 +29,7 @@ export default function Navbar() {
       initial="hidden"
       animate="visible"
       variants={fadeDown}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed shadowlg top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "bg-primary/95 backdrop-blur-xl shadow-lg shadow-black/20 border-b border-white/5"
           : "bg-transparent"
