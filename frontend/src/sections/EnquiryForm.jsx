@@ -25,7 +25,10 @@ export default function EnquiryForm() {
     setError("");
 
     try {
-      const response = await axios.post("/api/enquiry", form);
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/enquiry`,
+        form,
+      );
       setSuccess(true);
       setForm(initialForm);
 
