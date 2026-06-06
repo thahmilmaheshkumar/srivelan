@@ -31,8 +31,6 @@ export default function EnquiryForm() {
       );
       setSuccess(true);
       setForm(initialForm);
-
-      console.log(response);
     } catch (err) {
       setError(
         err.response?.data?.error || "Something went wrong. Please try again.",
