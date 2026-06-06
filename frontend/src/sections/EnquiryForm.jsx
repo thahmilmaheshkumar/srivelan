@@ -34,7 +34,6 @@ export default function EnquiryForm() {
 
       console.log(response);
     } catch (err) {
-      console.log(err?.response?.data);
       setError(
         err.response?.data?.error || "Something went wrong. Please try again.",
       );
